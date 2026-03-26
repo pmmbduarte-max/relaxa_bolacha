@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relaxa Bolacha — Bem-estar que se sente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terra:   #B85042;
+      --terra2:  #9a3e32;
+      --sage:    #84B59F;
+      --sage2:   #A7BEAE;
+      --cream:   #F5F0E8;
+      --cream2:  #EDE7DB;
+      --dark:    #2C2C2A;
+      --muted:   #888780;
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,80,66,0.1);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--terra); letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--dark);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terra); }
+    .nav-cta {
+      background: var(--terra); color: var(--white) !important;
+      padding: 0.5rem 1.2rem; border-radius: 2rem;
+    }
+    .nav-cta:hover { background: var(--terra2); color: var(--white) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 3rem 4rem;
+      gap: 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute; right: -8rem; top: -8rem;
+      width: 42rem; height: 42rem; border-radius: 50%;
+      background: var(--sage); opacity: 0.12;
+      pointer-events: none;
+    }
+    .hero-bg-circle2 {
+      position: absolute; left: -4rem; bottom: -4rem;
+      width: 22rem; height: 22rem; border-radius: 50%;
+      background: var(--terra); opacity: 0.07;
+      pointer-events: none;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--terra);
+      background: rgba(184,80,66,0.1);
+      padding: 0.35rem 0.9rem; border-radius: 2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.1; font-weight: 700;
+      color: var(--dark);
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--terra);
+    }
+    .hero-subtitle {
+      margin-top: 1.5rem;
+      font-size: 1.1rem; line-height: 1.7; color: var(--muted);
+      max-width: 480px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; align-items: center;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--terra); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.03em;
+      border: none; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--terra2); transform: translateY(-1px); }
+    .btn-secondary {
+      color: var(--dark); font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--terra); }
+    .btn-secondary::after { content: '→'; }
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-card {
+      background: var(--white);
+      border-radius: 2rem; padding: 2.5rem;
+      box-shadow: 0 24px 80px rgba(44,44,42,0.1);
+      max-width: 360px; width: 100%;
+      position: relative;
+    }
+    .hero-card-accent {
+      position: absolute; top: -1rem; right: -1rem;
+      width: 4rem; height: 4rem; border-radius: 50%;
+      background: var(--terra); opacity: 0.15;
+    }
+    .hero-card-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; line-height: 1.4;
+      color: var(--dark); font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .hero-card-quote span { color: var(--terra); }
+    .hero-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      font-size: 0.78rem; font-weight: 500;
+      padding: 0.3rem 0.8rem; border-radius: 2rem;
+      background: var(--cream2); color: var(--muted);
+    }
+    .tag.active { background: rgba(184,80,66,0.1); color: var(--terra); }
+
+    /* ── FRASES ── */
+    #frases {
+      padding: 5rem 3rem;
+      background: var(--dark);
+      overflow: hidden;
+    }
+    .frases-scroll {
+      display: flex; gap: 2rem;
+      animation: scroll 30s linear infinite;
+      width: max-content;
+    }
+    .frase-item {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-style: italic;
+      color: var(--cream2); white-space: nowrap;
+      padding: 0 1rem;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .frase-item::after {
+      content: '·'; color: var(--terra); font-style: normal;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SOBRE ── */
+    #sobre {
+      padding: 7rem 3rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .sobre-label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 1rem;
+    }
+    .sobre-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.2; font-weight: 700;
+    }
+    .sobre-title em { font-style: italic; color: var(--terra); }
+    .sobre-text {
+      margin-top: 1.5rem;
+      font-size: 1rem; line-height: 1.8; color: var(--muted);
+    }
+    .sobre-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .stat {
+      background: var(--white);
+      border-radius: 1rem; padding: 1.5rem;
+      border: 1px solid var(--cream2);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--terra);
+    }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+    .sobre-visual {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .sobre-card {
+      background: var(--white);
+      border-radius: 1.2rem; padding: 1.5rem;
+      border: 1px solid var(--cream2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .sobre-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(44,44,42,0.08); }
+    .sobre-card:first-child {
+      grid-column: 1 / -1;
+      background: var(--terra); border-color: var(--terra);
+    }
+    .sobre-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .sobre-card-title {
+      font-weight: 500; font-size: 0.95rem; margin-bottom: 0.4rem;
+    }
+    .sobre-card:first-child .sobre-card-title { color: var(--white); }
+    .sobre-card:first-child .sobre-card-desc { color: rgba(255,255,255,0.75); }
+    .sobre-card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── PRODUTOS ── */
+    #produtos {
+      padding: 7rem 3rem;
+      background: var(--cream2);
+    }
+    .section-header {
+      text-align: center; margin-bottom: 3.5rem;
+    }
+    .section-label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--terra);
+      margin-bottom: 0.75rem; display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.2; font-weight: 700;
+    }
+    .section-title em { font-style: italic; color: var(--terra); }
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    .produto-card {
+      background: var(--white);
+      border-radius: 1.5rem; overflow: hidden;
+      border: 1px solid rgba(184,80,66,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .produto-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(44,44,42,0.12); }
+    .produto-card.featured { border: 2px solid var(--terra); }
+    .produto-img {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative;
+    }
+    .produto-img.c1 { background: #F5EDE8; }
+    .produto-img.c2 { background: #E8F0ED; }
+    .produto-img.c3 { background: #EDE8F5; }
+    .produto-img.c4 { background: #F5F0E8; }
+    .badge-pop {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--terra); color: var(--white);
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em;
+      padding: 0.25rem 0.7rem; border-radius: 2rem;
+    }
+    .produto-body { padding: 1.5rem; }
+    .produto-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .produto-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; }
+    .produto-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .produto-preco { font-weight: 500; font-size: 1rem; color: var(--terra); }
+    .produto-btn {
+      font-size: 0.8rem; font-weight: 500;
+      background: var(--cream2); color: var(--dark);
+      border: none; padding: 0.4rem 1rem;
+      border-radius: 2rem; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .produto-btn:hover { background: var(--terra); color: var(--white); }
+
+    /* ── PARCEIROS ── */
+    #parceiros {
+      padding: 7rem 3rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .parceiros-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem; margin-top: 3.5rem;
+    }
+    .parceiro-card {
+      border-radius: 1.2rem; padding: 1.75rem;
+      border: 1px solid var(--cream2);
+      background: var(--white);
+      transition: transform 0.2s;
+    }
+    .parceiro-card:hover { transform: translateY(-3px); }
+    .parceiro-icon {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; margin-bottom: 1rem;
+    }
+    .parceiro-icon.p1 { background: rgba(184,80,66,0.1); }
+    .parceiro-icon.p2 { background: rgba(132,181,159,0.15); }
+    .parceiro-icon.p3 { background: rgba(184,80,66,0.08); }
+    .parceiro-icon.p4 { background: rgba(132,181,159,0.1); }
+    .parceiro-title { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .parceiro-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── NEWSLETTER ── */
+    #newsletter {
+      padding: 6rem 3rem;
+      background: var(--dark);
+      text-align: center;
+    }
+    .newsletter-inner { max-width: 560px; margin: 0 auto; }
+    .newsletter-label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 1rem; display: block;
+    }
+    .newsletter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; line-height: 1.2; font-weight: 700;
+      color: var(--cream);
+    }
+    .newsletter-title em { font-style: italic; color: var(--terra); }
+    .newsletter-sub {
+      margin-top: 1rem; font-size: 0.95rem;
+      color: rgba(245,240,232,0.6); line-height: 1.7;
+    }
+    .newsletter-form {
+      display: flex; gap: 0.75rem; margin-top: 2rem;
+      max-width: 420px; margin-left: auto; margin-right: auto;
+    }
+    .newsletter-input {
+      flex: 1; padding: 0.85rem 1.2rem;
+      border-radius: 2rem; border: 1px solid rgba(245,240,232,0.15);
+      background: rgba(245,240,232,0.07); color: var(--cream);
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: rgba(245,240,232,0.35); }
+    .newsletter-input:focus { border-color: var(--terra); }
+    .newsletter-btn {
+      background: var(--terra); color: var(--white);
+      border: none; padding: 0.85rem 1.5rem;
+      border-radius: 2rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 500; cursor: pointer;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .newsletter-btn:hover { background: var(--terra2); }
+    .newsletter-note {
+      margin-top: 1rem; font-size: 0.8rem;
+      color: rgba(245,240,232,0.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(245,240,232,0.07);
+      padding: 2.5rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--cream);
+    }
+    .footer-tagline {
+      font-size: 0.8rem; color: var(--sage); margin-top: 0.25rem;
+    }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a {
+      font-size: 0.82rem; color: rgba(245,240,232,0.45);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-copy {
+      font-size: 0.78rem; color: rgba(245,240,232,0.25);
+      width: 100%; text-align: center; margin-top: 0.5rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+      #sobre { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      #produtos { padding: 4rem 1.5rem; }
+      #parceiros { padding: 4rem 1.5rem; }
+      #newsletter { padding: 4rem 1.5rem; }
+      .newsletter-form { flex-direction: column; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Relaxa Bolacha</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">A marca</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#parceiros">Parcerias</a></li>
+    <li><a href="#newsletter" class="nav-cta">Newsletter</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle2"></div>
+  <div class="hero-content">
+    <span class="hero-label">Bem-estar psicológico · Portugal</span>
+    <h1 class="hero-title">
+      Relaxa,<br><em>bolacha.</em><br>Vai passar.
+    </h1>
+    <p class="hero-subtitle">
+      Uma marca portuguesa de bem-estar psicológico — produtos, frases e serviços para gerir o stress, a ansiedade e encontrar equilíbrio no dia a dia.
+    </p>
+    <div class="hero-actions">
+      <a href="#produtos" class="btn-primary">Ver os produtos</a>
+      <a href="#sobre" class="btn-secondary">Saber mais</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-accent"></div>
+      <p class="hero-card-quote">
+        <span>"</span>Sentir não é exagero. Parar não é desistir.<span>"</span>
+      </p>
+      <div class="hero-card-tags">
+        <span class="tag active">Equilíbrio</span>
+        <span class="tag active">Autocuidado</span>
+        <span class="tag">Bem-estar</span>
+        <span class="tag">Saúde mental</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRASES ANIMADAS -->
+<section id="frases">
+  <div class="frases-scroll">
+    <span class="frase-item">"Em processo."</span>
+    <span class="frase-item">"Modo avião ligado."</span>
+    <span class="frase-item">"Não é fraqueza, é sabedoria."</span>
+    <span class="frase-item">"Pausa não é desistência."</span>
+    <span class="frase-item">"Respira. Depois decide."</span>
+    <span class="frase-item">"Hoje chega."</span>
+    <span class="frase-item">"Em construção permanente."</span>
+    <span class="frase-item">"Pequenos passos também são movimento."</span>
+    <span class="frase-item">"Em processo."</span>
+    <span class="frase-item">"Modo avião ligado."</span>
+    <span class="frase-item">"Não é fraqueza, é sabedoria."</span>
+    <span class="frase-item">"Pausa não é desistência."</span>
+    <span class="frase-item">"Respira. Depois decide."</span>
+    <span class="frase-item">"Hoje chega."</span>
+    <span class="frase-item">"Em construção permanente."</span>
+    <span class="frase-item">"Pequenos passos também são movimento."</span>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-text-col">
+    <p class="sobre-label">A nossa missão</p>
+    <h2 class="sobre-title">Bem-estar que se <em>sente.</em> Resultados que se medem.</h2>
+    <p class="sobre-text">
+      A Relaxa Bolacha nasceu da convicção de que cuidar da saúde mental não precisa de ser complicado, caro ou solitário. Combinamos produtos físicos apelativos com serviços de impacto real — para pessoas, equipas e empresas.
+    </p>
+    <div class="sobre-stats">
+      <div class="stat">
+        <div class="stat-num">1 em 3</div>
+        <div class="stat-label">trabalhadores sofre de stress crónico</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">-28%</div>
+        <div class="stat-label">absentismo em empresas que investem em bem-estar</div>
+      </div>
+    </div>
+  </div>
+  <div class="sobre-visual">
+    <div class="sobre-card">
+      <div class="sobre-card-icon">✦</div>
+      <div class="sobre-card-title">Produtos com mensagem</div>
+      <div class="sobre-card-desc">Cada peça carrega uma frase que lembra o que importa.</div>
+    </div>
+    <div class="sobre-card">
+      <div class="sobre-card-icon">◎</div>
+      <div class="sobre-card-title">Workshops</div>
+      <div class="sobre-card-desc">Sessões práticas de gestão de stress e ansiedade.</div>
+    </div>
+    <div class="sobre-card">
+      <div class="sobre-card-icon">◈</div>
+      <div class="sobre-card-title">Parcerias</div>
+      <div class="sobre-card-desc">Psicólogos, ginásios, spas e empresas.</div>
+    </div>
+    <div class="sobre-card">
+      <div class="sobre-card-icon">◇</div>
+      <div class="sobre-card-title">Newsletter semanal</div>
+      <div class="sobre-card-desc">Uma pausa de 3 minutos todas as segundas-feiras.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="section-header">
+    <span class="section-label">Os nossos produtos</span>
+    <h2 class="section-title">Packs de <em>bem-estar</em></h2>
+  </div>
+  <div class="produtos-grid">
+    <div class="produto-card">
+      <div class="produto-img c1">🫖</div>
+      <div class="produto-body">
+        <div class="produto-name">Kit Pausa</div>
+        <div class="produto-desc">Caneca + bloco de apontamentos + 2 pins. O essencial para uma pausa real.</div>
+        <div class="produto-footer">
+          <span class="produto-preco">18–22€</span>
+          <button class="produto-btn">Saber mais</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card featured">
+      <div class="produto-img c2">
+        🌿
+        <span class="badge-pop">Mais popular</span>
+      </div>
+      <div class="produto-body">
+        <div class="produto-name">Kit Equilíbrio</div>
+        <div class="produto-desc">T-shirt + caneca + bloco + pins. Perfeito para oferecer ou para te presenteares.</div>
+        <div class="produto-footer">
+          <span class="produto-preco">35–45€</span>
+          <button class="produto-btn">Saber mais</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card">
+      <div class="produto-img c3">📓</div>
+      <div class="produto-body">
+        <div class="produto-name">Kit Emergência</div>
+        <div class="produto-desc">Pins + bloco + cartão com frases + snack parceiro. Para os dias difíceis.</div>
+        <div class="produto-footer">
+          <span class="produto-preco">15–20€</span>
+          <button class="produto-btn">Saber mais</button>
+        </div>
+      </div>
+    </div>
+    <div class="produto-card">
+      <div class="produto-img c4">🏢</div>
+      <div class="produto-body">
+        <div class="produto-name">Kit Team Wellness</div>
+        <div class="produto-desc">Para empresas. Personalização com o logótipo. Desconto a partir de 50 unidades.</div>
+        <div class="produto-footer">
+          <span class="produto-preco">Orçamento</span>
+          <button class="produto-btn">Contactar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCEIROS -->
+<section id="parceiros">
+  <div class="section-header">
+    <span class="section-label">Parcerias</span>
+    <h2 class="section-title">Trabalhamos <em>juntos</em></h2>
+  </div>
+  <div class="parceiros-grid">
+    <div class="parceiro-card">
+      <div class="parceiro-icon p1">🧠</div>
+      <div class="parceiro-title">Psicólogos & Clínicas</div>
+      <div class="parceiro-desc">Materiais terapêuticos e blocos com prompts criados com profissionais de saúde mental.</div>
+    </div>
+    <div class="parceiro-card">
+      <div class="parceiro-icon p2">🏋️</div>
+      <div class="parceiro-title">Ginásios & Yoga</div>
+      <div class="parceiro-desc">Produtos à venda na receção, packs de boas-vindas e workshops no espaço.</div>
+    </div>
+    <div class="parceiro-card">
+      <div class="parceiro-icon p3">💊</div>
+      <div class="parceiro-title">Farmácias</div>
+      <div class="parceiro-desc">Expositores compactos, produtos de impulso junto à caixa. Consignação sem risco.</div>
+    </div>
+    <div class="parceiro-card">
+      <div class="parceiro-icon p4">✨</div>
+      <div class="parceiro-title">Spas & Estética</div>
+      <div class="parceiro-desc">Oferta no final de tratamentos, packs de autocuidado e workshops de bem-estar.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="newsletter-inner">
+    <span class="newsletter-label">A Pausa Semanal · Edição #00</span>
+    <h2 class="newsletter-title">3 minutos.<br><em>Toda a segunda-feira.</em></h2>
+    <p class="newsletter-sub">Uma frase, uma técnica e um desafio pequeno para respirar melhor durante a semana. Sem spam. Sem pressão.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="o teu email">
+      <button class="newsletter-btn">Subscrever</button>
+    </div>
+    <p class="newsletter-note">Gratuita. Podes cancelar quando quiseres.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Relaxa Bolacha</div>
+    <div class="footer-tagline">Bem-estar que se sente. Resultados que se medem.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#sobre">A marca</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#parceiros">Parcerias</a></li>
+    <li><a href="mailto:relaxabolacha@email.com">Contacto</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Relaxa Bolacha · relaxabolacha@email.com · www.relaxabolacha.pt</p>
+</footer>
+
+</body>
+</html>
