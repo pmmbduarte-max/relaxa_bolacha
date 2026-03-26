@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog - Relaxa Bolacha</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS for styling -->
+</head>
+<body>
+    <header>
+        <h1>Product Catalog</h1>
+        <nav>
+            <ul>
+                <li><a href="#tshirts">T-Shirts</a></li>
+                <li><a href="#caps">Caps</a></li>
+                <li><a href="#pins">Pins</a></li>
+                <li><a href="#mugs">Mugs</a></li>
+                <li><a href="#notebooks">Notebooks</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="filters">
+        <h2>Filters</h2>
+        <form>
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="all">All</option>
+                <option value="tshirts">T-Shirts</option>
+                <option value="caps">Caps</option>
+                <option value="pins">Pins</option>
+                <option value="mugs">Mugs</option>
+                <option value="notebooks">Notebooks</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+    </section>
+    <main>
+        <h2>Our Products</h2>
+        <div class="products">
+            <section id="tshirts">
+                <h3>T-Shirts</h3>
+                <!-- Product cards for T-Shirts will go here -->
+            </section>
+            <section id="caps">
+                <h3>Caps</h3>
+                <!-- Product cards for Caps will go here -->
+            </section>
+            <section id="pins">
+                <h3>Pins</h3>
+                <!-- Product cards for Pins will go here -->
+            </section>
+            <section id="mugs">
+                <h3>Mugs</h3>
+                <!-- Product cards for Mugs will go here -->
+            </section>
+            <section id="notebooks">
+                <h3>Notebooks</h3>
+                <!-- Product cards for Notebooks will go here -->
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Relaxa Bolacha. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script> <!-- Link to external JavaScript for interactivity -->
+</body>
+</html>
